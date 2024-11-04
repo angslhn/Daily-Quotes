@@ -23,8 +23,9 @@ async function translateText(text) {
 
 async function getQuote() {
   try {
-    const response = await fetch("https://favqs.com/api/qotd");
+    const response = await fetch("https://api.quotable.io/random");
     const data = await response.json();
+    console.log(data);
     return data;
   }
   catch (error) {
@@ -38,17 +39,17 @@ function showQuote(quote, author) {
   document.getElementById("author").textContent = author;
 }
 
-const quoteWrapper = document.querySelector(".quote-content");
+const quoteContent = document.querySelector(".quote-content");
 
 async function quote() {
     let data = await getQuote();
 
     if (data) {
-      let textQuote = await translateText(data.quote.body);
+      let textQuote = await translateText(data.content);
 
-      quoteWrapper.style.display = "flex";
+      quoteContent.style.display = "flex";
 
-      showQuote(textQuote || data.quote.body, data.quote.author);
+      showQuote(textQuote || data.content, data.author);
     }
 
 };
