@@ -22,7 +22,7 @@ body {
 }
 
 .quote-content {
-    display: none;
+    display: flex;
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
