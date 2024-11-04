@@ -23,7 +23,7 @@ async function translateText(text) {
 
 async function getQuote() {
   try {
-    const response = await fetch("https://api.quotable.io/random");
+    const response = await fetch("https://zenquotes.io/api/random");
     const data = await response.json();
     return data;
   }
@@ -44,11 +44,11 @@ async function quote() {
     let data = await getQuote();
 
     if (data) {
-      let textQuote = await translateText(data.content);
+      let textQuote = await translateText(data[0].q);
 
       quoteWrapper.style.display = "flex";
 
-      showQuote(textQuote || data.content, data.author);
+      showQuote(textQuote || data[0].q, data[0].a);
     }
 
 };
